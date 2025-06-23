@@ -36,7 +36,7 @@ graph TB
 
     subgraph "AI/ML Layer"
         LANGCHAIN[LangChain Framework]
-        OPENAI[OpenAI GPT-4]
+        OPENAI[OpenAI]
         ANTHROPIC[Anthropic Claude]
         TOOLS[Agent Tools]
     end
@@ -328,24 +328,6 @@ graph TB
     BACKUP_ENCRYPT --> KEY_MGMT
 ```
 
-## Scalability Patterns
-
-### Horizontal Scaling
-- **API Servers**: Stateless design allows easy horizontal scaling
-- **Background Workers**: Queue-based processing with multiple workers
-- **Database**: Read replicas for query distribution
-- **Cache**: Redis cluster for distributed caching
-
-### Vertical Scaling
-- **AI Processing**: GPU-enabled instances for LLM operations
-- **Database**: High-memory instances for large datasets
-- **Monitoring**: High-CPU instances for real-time processing
-
-### Auto-Scaling Triggers
-- CPU utilization > 70%
-- Memory utilization > 80%
-- Queue depth > 100 messages
-- Response time > 2 seconds
 
 ## Performance Optimization
 
@@ -389,19 +371,6 @@ graph LR
 - **Critical**: System down, database unavailable
 - **Warning**: High error rate, slow response times
 - **Info**: Deployment notifications, scaling events
-
-## Disaster Recovery
-
-### Backup Strategy
-- **Database**: Daily full backups, hourly incremental
-- **Configuration**: Version-controlled infrastructure as code
-- **Secrets**: Encrypted backup of secrets and keys
-
-### Recovery Procedures
-- **RTO**: 4 hours for full system recovery
-- **RPO**: 1 hour maximum data loss
-- **Failover**: Automated failover to secondary region
-- **Testing**: Monthly disaster recovery drills
 
 ## Technology Stack Summary
 
