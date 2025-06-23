@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:17-alpine
+    container_name: mentis-postgres
+    environment:
+      POSTGRES_DB: mentis_db
+      POSTGRES_USER: mentis_user
+      POSTGRES_PASSWORD: mentis_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mentis_user -d mentis_db"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - mentis-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: mentis-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - mentis-network
+
+  # Mentis Backend Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mentis-backend
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://mentis_user:mentis_password@postgres:5432/mentis_db
+      REDIS_URL: redis://redis:6379
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: mentis_db
+      POSTGRES_USER: mentis_user
+      POSTGRES_PASSWORD: mentis_password
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - mentis-network
+    restart: unless-stopped
+
+  # pgAdmin for database management (optional)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: mentis-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: info@mentisprotocol.ai
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - mentis-network
+    profiles:
+      - dev
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  mentis-network:
+    driver: bridge
+
