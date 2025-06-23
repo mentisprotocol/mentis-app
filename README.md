@@ -10,7 +10,7 @@
 
 ### 🤖 **AI-Powered Autonomous Management**
 - **LangChain Integration**: Advanced AI agents with tool-based architecture
-- **Multi-LLM Support**: OpenAI GPT-4 and Anthropic Claude
+- **Multi-LLM Support**: OpenAI and Anthropic Claude
 - **Intelligent Decision Making**: AI-driven monitoring, analysis, and remediation
 - **Custom Agent Tools**: Blockchain-specific operations and integrations
 
