@@ -113,22 +113,6 @@ Connect to WebSocket at `/socket.io` for real-time updates:
 - `status_change` - Agent status change
 - `system_status` - System health update
 
-## SDK and Libraries
-
-### JavaScript/TypeScript
-```bash
-npm install @mentis/api-client
-```
-
-### Python
-```bash
-pip install mentis-api-client
-```
-
-### Go
-```bash
-go get github.com/mentis-protocol/go-client
-```
 
 ## Examples
 
