@@ -310,10 +310,8 @@ MIT License - see LICENSE file for details
 
 ### 📖 **Comprehensive Documentation Available**
 - **[API Documentation](docs/api/README.md)** - Complete API reference with examples
-- **[Database Schema](docs/database/schema.md)** - Database design and relationships
 - **[System Architecture](docs/architecture/system-overview.md)** - Technical architecture and diagrams
 - **[Deployment Guide](docs/deployment/)** - Docker and production deployment
-- **[Development Guide](docs/development/)** - Local development setup
 
 ### 🏗️ **Architecture Overview**
 ```mermaid
