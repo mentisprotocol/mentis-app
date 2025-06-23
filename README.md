@@ -79,7 +79,7 @@ src/
 - **Runtime**: Node.js + TypeScript
 - **Framework**: Express.js
 - **Database**: PostgreSQL + Redis
-- **AI/LLM**: LangChain v0.3, OpenAI GPT-4, Anthropic Claude
+- **AI/LLM**: LangChain v0.3, OpenAI, Anthropic Claude
 - **Real-time**: Socket.IO
 - **Blockchain**: Ethers.js, Solana Web3.js, CosmJS
 - **Authentication**: JWT
@@ -230,7 +230,7 @@ npm start
 
 ### Supported LLM Models
 - **OpenAI**: `gpt-4o`, `gpt-4.1`, `o4-mini`, ...
-- **Anthropic**: 'claude-sonnet-4-20250514', `claude-3-sonnet-20240229`, ...
+- **Anthropic**: `claude-sonnet-4-20250514`, `claude-3-sonnet-20240229`, ...
 
 ### Task Types
 - `monitor` - Routine health and performance monitoring
